@@ -8,10 +8,10 @@ namespace Evidex.Models
     {
         [Key]
         public string UserName { get; set; }
-
+        
         [DataType(DataType.DateTime)]
         public DateTime SignedUpAt { get; set; }
-
+        
         public IdentityUserToken<string> Token { get; }
 
         public ProfileModel Profile { get; set; }

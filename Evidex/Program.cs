@@ -1,15 +1,26 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Evidex.Data;
+using Npgsql;
+using Evidex.Utilities.Logs;
+
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<EvidexContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("EvidexContext") ?? throw new InvalidOperationException("Connection string 'EvidexContext' not found.")));
+
+string evidexConnect =
+    "User ID=evidex;Password=ALthEA25lad!$;Server= " + 
+    "host.docker.internal;Port=5433;Database=evidex;" +
+    "Integrated Security=true;Pooling=true";
+
+NpgsqlConnectionStringBuilder postgresBuilder
+    = new NpgsqlConnectionStringBuilder(evidexConnect);
 
 // Add services to the container.
+builder.Services.AddDbContext<EvidexContext>(options =>
+    options.UseNpgsql(postgresBuilder.ConnectionString));
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-
+        
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
