@@ -11,16 +11,6 @@ namespace Evidex.Models
         [Display(Name = "User Name")]
         public string UserName { get; set; }
 
-        [Required]
-        [DataType(DataType.DateTime)]
-        [Display(Name = "Signed Up At")]
-        public DateTime SignedUpAt { get; set; }
-
-        [Required]
-        public UserType Type { get; set; }
-
-        public IdentityUserToken<string> Token { get; }
-
-        public ProfileModel Profile { get; set; }
+        public Guid ProfileID { get;}
     }
 }
