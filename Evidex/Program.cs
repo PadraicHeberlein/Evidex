@@ -6,10 +6,7 @@ using Evidex.Utilities.Logs;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string evidexConnect =
-    "User ID=evidex;Password=ALthEA25lad!$;Server= " + 
-    "host.docker.internal;Port=5433;Database=evidex;" +
-    "Integrated Security=true;Pooling=true";
+string evidexConnect = builder.Configuration["DbContext:ConnectionString"];
 
 NpgsqlConnectionStringBuilder postgresBuilder
     = new NpgsqlConnectionStringBuilder(evidexConnect);
