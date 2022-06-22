@@ -4,7 +4,7 @@
 
 <div class="text-center">
     <h1 class="display-4">Welcome to Evidex!</h1>
-    <p>A place where you can explore evidence for various clamis</a>.</p>  
+    <p>A place where you can explore evidence for various claims</a>.</p>  
 </div>
 <div class="text-center">
     <div class="container-fluid">
@@ -24,6 +24,16 @@
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
+    @{
+    string message = "foreignObject example with Scalable Vector Graphics (SVG)";
+}
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="0" rx="10" ry="10" width="200" height="200" stroke="black" 
+        fill="gray" />
+    <foreignObject x="20" y="20" width="160" height="160">
+        <p>@message</p>
+    </foreignObject>
+</svg>
 </div>
 
 
