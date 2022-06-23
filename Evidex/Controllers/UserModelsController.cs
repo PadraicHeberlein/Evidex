@@ -56,15 +56,26 @@ namespace Evidex.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserName,SignedUpAt,Type")] UserModel userModel)
+        public async Task<IActionResult> Create([Bind("UserName,LastName,FirstName")] 
+                                                UserModel userModel)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            _context.UserModel.Add(userModel);
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
+            /*
             if (ModelState.IsValid)
             {
                 _context.Add(userModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(userModel);
+            return View(userModel);*/
         }
 
         // GET: UserModels/Edit/5
