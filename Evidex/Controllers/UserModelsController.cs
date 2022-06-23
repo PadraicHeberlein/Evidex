@@ -64,9 +64,12 @@ namespace Evidex.Controllers
                 return View();
             }
 
-            _context.UserModel.Add(userModel);
-            await _context.SaveChangesAsync();
-
+            if (userModel != null)
+            {
+                _context.UserModel.Add(userModel);
+                await _context.SaveChangesAsync();
+            }
+           
             return RedirectToAction(nameof(Index));
             /*
             if (ModelState.IsValid)
